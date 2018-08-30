@@ -13,12 +13,14 @@ use App\Entity\MP3Metadata;
 use App\Entity\MP3MetadataBlob;
 use App\FS\MP3File as MPF;
 use App\FS\MP3Metadata as MPM;
+use Symfony\Component\Finder\Finder;
 
 class PopulateFile {
 
+    /** @var MP3File */
     private $fileToPopulate;
 
-    public function __construct(MP3File $givenFile) {
+    public function __construct($givenFile) {
 
         $this->fileToPopulate = $givenFile;
 
@@ -26,16 +28,8 @@ class PopulateFile {
 
     public function populate () : ?MP3File {
 
-        $currFile = NULL;
-
-        $currMeta = NULL;
-
         // populate mp3file entity
-        $currFile = new MPF($this->fileToPopulate->getBasename());
-
-        $this->fileToPopulate->setFullpath($currFile->getPath());
-
-        $this->fileToPopulate->setBasename($currFile->getName());
+        $currFile = new MPF($this->fileToPopulate->getFullpath());
 
         // populate mp3metadata entity
         $currMeta = $currFile->getMetadata();
@@ -44,31 +38,23 @@ class PopulateFile {
 
         $tags = $currMeta->getTagArray();
 
-        $newMP3Metadata = $this->getMp3Metadata();
+        /** @var MP3Metadata $newMP3MetadataEntity */
+        $newMP3MetadataEntity = $this->fileToPopulate->getMp3Metadata();
 
-        $newMP3Metadata->setAlbum($tags['album']);
-
-        $newMP3Metadata->setArtist($tags['artist']);
-
-        $newMP3Metadata->setTitle($tags['title']);
-
-        $newMP3Metadata->setDuration($tags['duration']);
-
-        $newMP3Metadata->setYear($tags['year']);
-
-        $newMP3Metadata->setGenre($tags['genre']);
-
-        $newMP3Metadata->setComment($tags['comment']);
-
-        $newMP3Metadata->setTrack($tags['track']);
-
-        $newMP3Metadata->setContributor($tags['contributor']);
-
-        $newMP3Metadata->setBitrate($tags['bitrate']);
-
-        $newMP3Metadata->setPopularityMeter($tags['popularityMeter']);
-
-        $newMP3Metadata->setUniqueFileIdentifier($tags['ufi']);
+        $newMP3MetadataEntity
+            ->setAlbum($tags['album'])
+            ->setArtist($tags['artist'])
+            ->setTitle($tags['title'])
+            ->setDuration($tags['duration'])
+            ->setYear($tags['year'])
+            ->setGenre($tags['genre'])
+            ->setComment($tags['comment'])
+            ->setTrack($tags['track'])
+            ->setContributor($tags['contributor'])
+            ->setBitrate($tags['bitrate'])
+            ->setPopularityMeter($tags['popularityMeter'])
+            ->setUniqueFileIdentifier($tags['ufi'])
+            ->setMp3Blob(new MP3MetadataBlob());
 
         //populate mp3metablob entity
         $concatMeta = '';
@@ -79,7 +65,7 @@ class PopulateFile {
 
         }
 
-        $newMP3Metadata->getMp3Metadata()->getMp3Blob()->setConcatMetadata($concatMeta);
+        $newMP3MetadataEntity->getMp3Blob()->setConcatMetadata($concatMeta);
 
         return $this->fileToPopulate;
 

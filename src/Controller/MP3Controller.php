@@ -43,28 +43,28 @@ class MP3Controller extends Controller {
      */
     public function new (Request $request, FileUploader $fileUploader) : Response {
 
-        $uploadedFile = new MP3File();
-        $form = $this->createForm(MP3FileType::class, $uploadedFile);
+        $mp3file = new MP3File();
+        $form = $this->createForm(MP3FileType::class, $mp3file);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             /** @var UploadedFile $file */
-            $file = $uploadedFile->getFile();
+            $file = $mp3file->getFile();
 
             $fileName = $fileUploader->upload($file);
 
-            $uploadedFile->setFile($fileName);
+            $mp3file->setFile($fileName);
 
-            $populateFile = new PopulateFile($uploadedFile);
-
-            $uploadedFile = $populateFile->populate();
+            $populateFile = new PopulateFile($mp3file);
+            $populateFile->populate();
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($uploadedFile);
+            $em->persist($mp3file);
             $em->flush();
 
-            return $this->redirect('/');
+            return $this->redirectToRoute('mp3_index');
+
         }
 
         return $this->render('mp3/new.html.twig', array(

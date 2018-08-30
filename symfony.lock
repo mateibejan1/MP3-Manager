@@ -80,6 +80,9 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "james-heinrich/getid3": {
+        "version": "v1.9.15"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },

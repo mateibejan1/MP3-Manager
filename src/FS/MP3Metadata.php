@@ -60,7 +60,7 @@ class MP3Metadata extends Metadata {
 
     public function fetchID3Metadata($filepath) : array {
 
-        $idv3tagFetcher = new \AudioInfo();
+        $idv3tagFetcher = new AudioInfo();
 
         return $idv3tagFetcher->Info($filepath);
 
