@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MP3File {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <table class="table"  style="background-color: aliceblue">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ mp3file.id }}</td>
+                </tr>
+                <tr>
+                    <th>Fullpath</th>
+                    <td>{{ mp3file.fullpath }}</td>
+                </tr>
+                <tr>
+                    <th>Basename</th>
+                    <td>{{ mp3file.basename }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    {{ include('mp3_file/_delete_form.html.twig') }}
+{% endblock %}

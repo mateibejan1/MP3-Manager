@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Path</th>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Album</th>
+                        <th>Duration</th>
+                        <th>Year</th>
+                        <th>Genre</th>
+                        <th>Comment</th>
+                        <th>Contributor</th>
+                        <th>Bitrate</th>
+                        <th>Track</th>
+                        <th>PopularityMeter</th>
+                        <th>UniqueFileIdentifier</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mp3file in mp3files %}
+                        {% set mp3metadata = mp3file.mp3Metadata %}
+                        <tr>
+                            <td>{{ mp3file.id }}</td>
+                            <td>{{ mp3file.fullpath }}</td>
+                            <td>{{ mp3file.basename }}</td>
+                            <td>{{ mp3metadata.id }}</td>
+                            <td>{{ mp3metadata.title }}</td>
+                            <td>{{ mp3metadata.artist }}</td>
+                            <td>{{ mp3metadata.album }}</td>
+                            <td>{{ mp3metadata.duration }}</td>
+                            <td>{{ mp3metadata.year.format('y-m-d') }}</td>
+                            <td>{{ mp3metadata.genre }}</td>
+                            <td>{{ mp3metadata.comment }}</td>
+                            <td>{{ mp3metadata.contributor }}</td>
+                            <td>{{ mp3metadata.bitrate }}</td>
+                            <td>{{ mp3metadata.track }}</td>
+                            <td>{{ mp3metadata.popularityMeter }}</td>
+                            <td>{{ mp3metadata.uniqueFileIdentifier }}</td>
+                            <td>
+                                <a href="{{ path('mp3file_edit', {'id': mp3file.id}) }}">Edit</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('mp3file_delete', {'id': mp3file.id}) }}">Delete</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4">No entries.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

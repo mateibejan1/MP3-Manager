@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blobhome{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Blobstring</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for mp3blob in mp3blobs %}
+                <tr>
+                    <td>{{ mp3blob.id }}</td>
+                    <td>{{ mp3blob.concatMetadata }}</td>
+                    <td>
+                        <a href="{{ path('mp3blob_edit', {'id': mp3blob.id}) }}">edit</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('mp3blob_delete', {'id': mp3blob.id}) }}">delete</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">No entries.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

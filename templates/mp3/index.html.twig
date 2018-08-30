@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+        <table class="table">
+            <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Path</th>
+                        <th>Name</th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Duration</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Comment</th>
+                <th>Contributor</th>
+                <th>Bitrate</th>
+                <th>Track</th>
+                <th>PopularityMeter</th>
+                <th>UniqueFileIdentifier</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mp3data in mp3datas %}
+                        {% set mp3metadata = mp3data.mp3Metadata %}
+                        <tr>
+                            <td>{{ mp3data.id }}</td>
+                            <td>{{ mp3data.fullpath }}</td>
+                            <td>{{ mp3data.basename }}</td>
+                            <td>{{ mp3metadata.title }}</td>
+                            <td>{{ mp3metadata.artist }}</td>
+                            <td>{{ mp3metadata.album }}</td>
+                            <td>{{ mp3metadata.duration }}</td>
+                            <td>{{ mp3metadata.year.format('y-m-d') }}</td>
+                            <td>{{ mp3metadata.genre }}</td>
+                            <td>{{ mp3metadata.comment }}</td>
+                            <td>{{ mp3metadata.contributor }}</td>
+                            <td>{{ mp3metadata.bitrate }}</td>
+                            <td>{{ mp3metadata.track }}</td>
+                            <td>{{ mp3metadata.popularityMeter }}</td>
+                            <td>{{ mp3metadata.uniqueFileIdentifier }}</td>
+                            <td>
+                                <a href="{{ path('mp3_edit', {'id': mp3data.id}) }}">Edit</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('mp3_delete', {'id': mp3data.id}) }}">Delete</a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4">No entries.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

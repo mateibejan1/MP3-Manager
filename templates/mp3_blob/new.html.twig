@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MP3Blob{% endblock %}
+
+{% block body %}
+    <h1>Create new MP3Blob</h1>
+
+    {{ include('_form.html.twig') }}
+
+    <a href="{{ path('mp3blob_index') }}">back to list</a>
+{% endblock %}

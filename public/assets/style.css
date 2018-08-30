@@ -1,0 +1,96 @@
+.navbar {
+    background-color: black;
+}
+.navbar .btn {
+    background-color: white;
+}
+.navbar .btn:hover {
+    background-color: plum;
+}
+td p .edit {
+    background-color: plum;
+}
+td p .del {
+    background-color: deeppink;
+}
+.pagination .active a {
+    background-color: deeppink;
+}
+.pagination li a{
+    color:purple;
+}
+body{
+    /*background-image: url("img/pink-circles-forming-a-funnel-21997-1920x1080.jpg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    padding-right: 0 !important;
+}
+#mytable {
+    background-color: white;
+}
+footer
+{
+    background-color: black;
+}
+footer p
+{
+    color: white;
+
+    padding-top: 15px;
+}
+#mytable td p a
+{
+    color: white;
+}
+
+.inp-sub
+{
+    margin-top: 30px;
+    vertical-align: middle;
+    background-image: none;
+    color: white;
+    background-color: purple;
+    border-color: white;
+}
+.form-up{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    opacity: 0.7;
+    margin-top: 50px;
+    color: white;
+    background-color: purple;
+}
+.form-up input[type=text]
+{
+    margin: 5px;
+}
+
+.del
+{
+    margin-top: -12px;
+    background-color: pink;
+}
+table
+{
+    border : 1px solid rgb(221, 221, 221);
+}
+.inp_val
+{
+    background-color: transparent;
+    border: none;
+}
+.edit_imp
+{
+    background-color:purple;
+    color: white;
+    background-image: none;
+    border: none;
+}
+.del_imp
+{
+    background-color:lightpink;
+    color: purple;
+    background-image: none;
+    border: none;
+
+}

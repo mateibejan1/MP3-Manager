@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MP3Blob{% endblock %}
+
+{% block body %}
+    <h1>Delete </h1>
+
+    <table class="table"  style="background-color: aliceblue">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mp3blob.id }}</td>
+            </tr>
+            <tr>
+                <th>Metadata</th>
+                <td>{{ mp3blob.metadata }}</td>
+            </tr>
+            <tr>
+                <th>Blobstring</th>
+                <td>{{ mp3blob.blobstring }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('mp3_blob/_delete_form.html.twig') }}
+{% endblock %}

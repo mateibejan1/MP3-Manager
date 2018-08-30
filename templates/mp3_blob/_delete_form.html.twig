@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('mp3blob_delete', {'id': mp3blob.id}) }}" onsubmit="return confirm('Stergeti mp3 blob?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mp3blob.id) }}">
+    <button class="btn "style="background-color: black ; color:white; text-align: center ; margin-left: 600px" >Delete</button>
+</form>

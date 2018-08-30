@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('mp3_delete', {'id': mp3data.id}) }}" onsubmit="return confirm('Delete selected file?');">
+    <input type="hidden" name="_method" value="DELETE" >
+    {#<input type="hidden" name="_token" value="{{ csrf_token('delete') }}" >#}
+    <button class="btn" style="background-color: black ; color:white; text-align: center ; margin-left: 600px" >Delete</button>
+</form>
